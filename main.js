@@ -1,6 +1,4 @@
-
 const prompt = require("prompt-sync")();
-
 
 const ROWS = 3;
 const COLS = 3;
@@ -32,7 +30,6 @@ const deposit = () => {
     }
 }
 };
-
 
 
 const getNumberOfLines = () =>{
@@ -174,5 +171,4 @@ module.exports = {
     printRows,
     getWinnings
 };
-
 

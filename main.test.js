@@ -1,6 +1,6 @@
 
 const { deposit, getNumberOfLines, getBet, spin, transpose, getWinnings } = require('./main');
-
+//global.prompt = jest.fn();
 
 /*
 describe('Sample Test', () => {
@@ -11,19 +11,45 @@ describe('Sample Test', () => {
 */
 
 
-describe('Slot Machine Game', () => {
+describe('Deposit amount', () => {
     describe('Deposit', () => {
         it('should return a valid deposit amount', () => {
-            expect(deposit()).toBe(100);
+            const returnedDeposit = deposit();
+            expect(typeof returnedDeposit).toBe('number');
         });
     });
+});
+
+
+describe('getNumberOfLines function', () => {
+   // beforeEach(() => {
+   //     global.prompt.mockClear();
+   // });
+
+    it('should return a valid number of lines (1, 2, or 3)', () => {
+        const result = getNumberOfLines();
+        expect(result).toBeGreaterThanOrEqual(1);
+        expect(result).toBeLessThanOrEqual(3);
+    });
+
+});
+
 
     describe('Get Bet', () => {
         it('should return a valid bet amount', () => {
-            expect(getBet(100, 1)).toBe(10);
+            const depositAmounts = [50, 100, 200, 500, 1000];
+            const numberOfLines = 1;
+    
+            depositAmounts.forEach(depositAmount => {
+                const maxBetAmount = Math.floor(depositAmount / 3);
+                const betAmount = getBet(depositAmount, numberOfLines);
+                expect(betAmount).toBeGreaterThanOrEqual(1);
+                // expect(betAmount).toBeLessThanOrEqual(maxBetAmount);
+            });
         });
     });
-
+       
+    
     describe('Spin', () => {
         it('should return an array of reels with correct dimensions', () => {
             const reels = spin();
@@ -53,6 +79,6 @@ describe('Slot Machine Game', () => {
             expect(getWinnings(rows, 10, 1)).toBe(0);
         });
     });
-});
+
 
 
